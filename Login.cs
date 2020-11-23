@@ -10,22 +10,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
         ClassUser login = new ClassUser();
-        public Form1()
+        public Login()
         {
             InitializeComponent();
-        }
-
-        private void fornecedorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
@@ -41,22 +31,18 @@ namespace WindowsFormsApp1
         private void btnLogin_Click(object sender, EventArgs e)
         {
             bool logged = login.sendLoginAccess();
+            Principal formPrincipal = new Principal(this);
             lblAlertLogin.Hide();
             if (logged)
             {
-                pnlLogin.Hide();
-                pnlListProvider.Show();
+                formPrincipal.Show();
+                this.Visible = false;
+
             }
             else
             {
                 lblAlertLogin.Show();
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            lblAlertLogin.Hide();
-            pnlListProvider.Hide();
         }
     }
 }

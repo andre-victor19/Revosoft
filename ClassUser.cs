@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -15,7 +17,14 @@ namespace WindowsFormsApp1
         {
             if(user != "" && password != "")
             {
-                return true;
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string command = $"SELECT * FROM bancoacesso WHERE login = '{user}' AND senha = '{password}'";
+                MySqlDataReader result = connection.executeCommand(command);    
+                bool isLogged = result.Read();
+                result.Close();
+                connection.closeConnection();
+                return isLogged;
             }
             return false;
         }
