@@ -13,8 +13,8 @@ namespace WindowsFormsApp1
 {
     public partial class Principal : Form
     {
-        private Login formLogin;
-        ClassProvider providers = new ClassProvider();
+        private Login formLogin { get; set; }
+        private ClassProvider providers { get; set; }
         private int itemProvider { get; set; }
         private int idxItem { get; set; }
 
@@ -31,6 +31,7 @@ namespace WindowsFormsApp1
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            providers = new ClassProvider();
             this.loadListProviders();
             ToolTip btnRefresh = new ToolTip();
             btnRefresh.SetToolTip(this.btnRefreshList, "Atualizar lista");
@@ -156,7 +157,8 @@ namespace WindowsFormsApp1
             string itemCnpj = listProvider.Items[idxItem].SubItems[2].Text;
             string itemOpenDate = listProvider.Items[idxItem].SubItems[3].Text;
             string itemEmail = listProvider.Items[idxItem].SubItems[4].Text;
-            EditProvider formEditProvider = new EditProvider(itemId, itemCompanyName);
+            string itemSituation = listProvider.Items[idxItem].SubItems[5].Text;
+            EditProvider formEditProvider = new EditProvider(itemId, itemCompanyName, itemCnpj, itemOpenDate, itemEmail, itemSituation);
             formEditProvider.Show();
         }
     }

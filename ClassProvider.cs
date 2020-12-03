@@ -11,11 +11,11 @@ namespace WindowsFormsApp1
 {
     class ClassProvider
     {
-        List<Provider> providers = new List<Provider>();
-        MessageBoxButtons buttons = MessageBoxButtons.OK;
-        MessageBoxIcon icon;
-        string message = "";
-        string caption = "";
+        private List<Provider> providers = new List<Provider>();
+        private MessageBoxButtons buttons = MessageBoxButtons.OK;
+        private MessageBoxIcon icon;
+        private string message { get; set; }
+        private string caption { get; set; }
 
         public List<Provider> getAllProviders()
         {
@@ -54,6 +54,29 @@ namespace WindowsFormsApp1
                 MessageBox.Show(message, caption, buttons, icon);
             }            
          }
+
+        public void updateProvider(Provider provider)
+        {
+            try {
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string command = $"UPDATE fornecedor SET razaoSocial = '{provider.companyName}', cnpj = '{provider.cnpj}', dataAbertura = '{provider.openDate}', email = '{provider.email}', situacaoCadastro = {provider.registrationSituation}, modificado = NOW() WHERE idfornecedor = {provider.idProvider};";
+                connection.update(command);
+                message = "Fornecedor atualizado com sucesso !!";
+                caption = "Sucesso";
+            }
+            catch(Exception error)
+            {
+                Console.WriteLine(error.ToString());
+                message = "Falha ao atualizar fornecedor.";
+                caption = "Falha";
+                icon = MessageBoxIcon.Error;
+            }
+            finally
+            {
+                MessageBox.Show(message, caption, buttons, icon);
+            }
+        }
 
         public void deleteProvider(int idProvider)
         {

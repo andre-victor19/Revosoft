@@ -53,6 +53,22 @@ namespace WindowsFormsApp1
             }
         }
 
+        public void update(string sql)
+        {
+            try {
+                MySqlCommand command = new MySqlCommand(sql, conn);
+                command.ExecuteNonQuery();
+            }
+            catch(Exception error)
+            {
+                Console.WriteLine(error.ToString());
+            }
+            finally
+            {
+                this.closeConnection();
+            }
+        }
+
         public void delete(string sql)
         {
             try {
