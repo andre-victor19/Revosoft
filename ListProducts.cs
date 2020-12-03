@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
     {
         ClassProduct products = new ClassProduct();
         private int itemProduct { get; set; }
+        private int idxItem { get; set; }
         public ListProducts()
         {
             InitializeComponent();
@@ -110,7 +111,8 @@ namespace WindowsFormsApp1
                     Point loc = e.Location;
                     loc.Offset(listProduct.Location);
                     menuOptions.Show(loc);
-                    itemProduct = Convert.ToInt32(listProduct.Items[ht.Item.Index].Text);
+                    idxItem = ht.Item.Index;
+                    itemProduct = Convert.ToInt32(listProduct.Items[idxItem].Text);
 
                 }
             }
@@ -127,6 +129,19 @@ namespace WindowsFormsApp1
             {
                 products.deleteProduct(itemProduct);
             }
+        }
+
+        private void atualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string itemIdProduct = listProduct.Items[idxItem].SubItems[0].Text;
+            string itemCodProduct = listProduct.Items[idxItem].SubItems[1].Text;
+            string itemCategory = listProduct.Items[idxItem].SubItems[2].Text;
+            string itemModel = listProduct.Items[idxItem].SubItems[3].Text;
+            string itemDescription = listProduct.Items[idxItem].SubItems[4].Text;
+            string itemQuantity = listProduct.Items[idxItem].SubItems[5].Text;
+            string itemValue = listProduct.Items[idxItem].SubItems[6].Text;
+            EditProduct formEditProduct = new EditProduct(itemIdProduct, itemCodProduct, itemCategory, itemModel, itemDescription, itemQuantity, itemValue);
+            formEditProduct.Show();
         }
     }
 }

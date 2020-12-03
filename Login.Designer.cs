@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.linkCreateAccess = new System.Windows.Forms.LinkLabel();
             this.lblAlertLogin = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             // 
             // pnlLogin
             // 
+            this.pnlLogin.Controls.Add(this.linkCreateAccess);
             this.pnlLogin.Controls.Add(this.lblAlertLogin);
             this.pnlLogin.Controls.Add(this.btnLogin);
             this.pnlLogin.Controls.Add(this.label2);
@@ -47,16 +49,30 @@
             this.pnlLogin.Controls.Add(this.txtPassword);
             this.pnlLogin.Controls.Add(this.txtUsuario);
             this.pnlLogin.Location = new System.Drawing.Point(160, 13);
-            this.pnlLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlLogin.Margin = new System.Windows.Forms.Padding(4);
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(378, 379);
             this.pnlLogin.TabIndex = 7;
+            // 
+            // linkCreateAccess
+            // 
+            this.linkCreateAccess.ActiveLinkColor = System.Drawing.Color.Black;
+            this.linkCreateAccess.AutoSize = true;
+            this.linkCreateAccess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkCreateAccess.Location = new System.Drawing.Point(146, 239);
+            this.linkCreateAccess.Name = "linkCreateAccess";
+            this.linkCreateAccess.Size = new System.Drawing.Size(86, 20);
+            this.linkCreateAccess.TabIndex = 8;
+            this.linkCreateAccess.TabStop = true;
+            this.linkCreateAccess.Text = "Criar login";
+            this.linkCreateAccess.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkCreateAccess.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCreateAccess_LinkClicked);
             // 
             // lblAlertLogin
             // 
             this.lblAlertLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAlertLogin.ForeColor = System.Drawing.Color.Red;
-            this.lblAlertLogin.Location = new System.Drawing.Point(77, 258);
+            this.lblAlertLogin.Location = new System.Drawing.Point(77, 283);
             this.lblAlertLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAlertLogin.Name = "lblAlertLogin";
             this.lblAlertLogin.Size = new System.Drawing.Size(231, 53);
@@ -69,7 +85,7 @@
             // 
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(77, 181);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(231, 44);
             this.btnLogin.TabIndex = 6;
@@ -102,7 +118,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(77, 130);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(229, 22);
@@ -112,7 +128,7 @@
             // txtUsuario
             // 
             this.txtUsuario.Location = new System.Drawing.Point(77, 57);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(229, 22);
             this.txtUsuario.TabIndex = 2;
@@ -125,11 +141,12 @@
             this.ClientSize = new System.Drawing.Size(703, 405);
             this.Controls.Add(this.pnlLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Revosoft";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.pnlLogin.ResumeLayout(false);
             this.pnlLogin.PerformLayout();
             this.ResumeLayout(false);
@@ -144,6 +161,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.LinkLabel linkCreateAccess;
     }
 }
 

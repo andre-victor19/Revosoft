@@ -12,10 +12,15 @@ namespace WindowsFormsApp1
 {
     public partial class Login : Form
     {
-        ClassUser login = new ClassUser();
+        ClassUser login { get; set; }
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            login = new ClassUser();
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
@@ -43,6 +48,12 @@ namespace WindowsFormsApp1
             {
                 lblAlertLogin.Show();
             }
+        }
+
+        private void linkCreateAccess_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AddUser formAddUser = new AddUser();
+            formAddUser.Show();
         }
     }
 }

@@ -37,7 +37,8 @@ namespace WindowsFormsApp1
             try {
                 ConnectionDB connection = new ConnectionDB();
                 connection.openConnection();
-                string command = $"INSERT INTO produto (idproduto, codProduto, categoria, modelo, descricao, quantidade, valorProduto, criado) VALUES (null,'{product.codProduct}', '{product.category}', '{product.model}', '{product.description}', {product.quantity}, {product.valueProduct}, NOW());";
+                string newValue = product.valueProduct.ToString().Replace(',', '.');
+                string command = $"INSERT INTO produto (idproduto, codProduto, categoria, modelo, descricao, quantidade, valorProduto, criado) VALUES (null,'{product.codProduct}', '{product.category}', '{product.model}', '{product.description}', {product.quantity}, {newValue}, NOW());";
                 connection.insert(command);
                 message = "Produto inserido com sucesso !!";
                 caption = "Sucesso";
@@ -54,6 +55,28 @@ namespace WindowsFormsApp1
                 MessageBox.Show(message, caption, buttons, icon);
             }
             
+        }
+
+        public void updateProduct(Product product)
+        {
+            try {
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string newValue = product.valueProduct.ToString().Replace(',', '.');
+                string command = $"UPDATE produto SET codProduto = '{product.codProduct}', categoria = '{product.category}', modelo = '{product.model}', descricao = '{product.description}', quantidade = {product.quantity}, valorProduto = {newValue}, modificado = NOW() WHERE idproduto = {product.idProduct};";
+                connection.update(command);
+                message = "Produto atualizado com sucesso !!";
+                caption = "Sucesso";
+            }
+            catch(Exception error) {
+                Console.WriteLine(error.ToString());
+                message = "Falha ao atualizar produto.";
+                caption = "Falha";
+                icon = MessageBoxIcon.Error;
+            }
+            finally {
+                MessageBox.Show(message, caption, buttons, icon);
+            }
         }
 
         public void deleteProduct(int idProduct)
