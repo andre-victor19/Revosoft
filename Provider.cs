@@ -8,16 +8,16 @@ namespace WindowsFormsApp1
 {
     class Provider
     {
-        public int idProvider = 0;
-        public string companyName = "";
-        public string cnpj = "";
-        public string openDate = "";
-        public string email = "";
-        public int registrationSituation = 1;
-        public string dateCreate = "";
+        public int idProvider { get; set; }
+        public string companyName { get; set; }
+        public string cnpj { get; set; }
+        public string openDate { get; set; }
+        public string email  { get; set; }
+        public int registrationSituation { get; set; }
+        public string dateCreate  { get; set; }
 
 
-        public Provider(){}
+public Provider(){}
 
         public Provider(int tempIdProvider, string tempCompanyName, string tempCnpj, string tempOpenDate, string tempEmail, int tempSituation)
         {

@@ -26,5 +26,8 @@ namespace WindowsFormsApp1.Properties
                 return defaultInstance;
             }
         }
+
+        public object IdDbAccess { get; internal set; }
+        public object IdProvider { get; internal set; }
     }
 }

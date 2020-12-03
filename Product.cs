@@ -8,16 +8,16 @@ namespace WindowsFormsApp1
 {
     class Product
     {
-        public int idProduct = 0;
-        public string codProduct = "";
-        public string category = "";
-        public string model = "";
-        public string description = "";
-        public int quantity = 1;
-        public double valueProduct = 0;
+        public int idProduct { get; set; }
+        public string codProduct { get; set; }
+        public string category { get; set; }
+        public string model { get; set; }
+        public string description { get; set; }
+        public int quantity { get; set; }
+        public decimal valueProduct { get; set; }
 
         public Product() { }
-        public Product(int tempIdProduct, string tempCodProduct, string tempCategory, string tempModel, string tempDescription, int tempQuantity, double tempValueProduct)
+        public Product(int tempIdProduct, string tempCodProduct, string tempCategory, string tempModel, string tempDescription, int tempQuantity, decimal tempValueProduct)
         {
             idProduct = tempIdProduct;
             codProduct = tempCodProduct;

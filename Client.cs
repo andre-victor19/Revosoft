@@ -8,11 +8,11 @@ namespace WindowsFormsApp1
 {
     class Client
     {
-        public int idClient = 0;
-        public string name = "";
-        public string surname = "";
-        public string cpf = "";
-        public string email = "";
+        public int idClient { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public string cpf { get; set; }
+        public string email { get; set; }
 
         public Client() { }
 

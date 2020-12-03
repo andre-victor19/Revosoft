@@ -8,10 +8,10 @@ using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
-    public class ClassUser
+    class ClassUser
     {
-        public string user = "";
-        public string password = "";
+        public string user { get; set; }
+        public string password { get; set; }
 
         public bool sendLoginAccess()
         {
@@ -20,8 +20,13 @@ namespace WindowsFormsApp1
                 ConnectionDB connection = new ConnectionDB();
                 connection.openConnection();
                 string command = $"SELECT * FROM bancoacesso WHERE login = '{user}' AND senha = '{password}'";
-                MySqlDataReader result = connection.executeCommand(command);    
+                MySqlDataReader result = connection.select(command);    
                 bool isLogged = result.Read();
+                if (isLogged)
+                {
+                    Properties.Settings.Default.IdDbAccess = result[0];
+                    Properties.Settings.Default.IdProvider = result[3];
+                }
                 result.Close();
                 connection.closeConnection();
                 return isLogged;

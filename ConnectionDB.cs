@@ -30,11 +30,43 @@ namespace WindowsFormsApp1
             conn.Close();
         }
 
-        public MySqlDataReader executeCommand(string sql)
+        public MySqlDataReader select(string sql)
         {
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = command.ExecuteReader();
                 return reader;
+        }
+
+        public void insert(string sql)
+        {
+            try
+            {
+                MySqlCommand command = new MySqlCommand(sql, conn);
+                command.ExecuteNonQuery();
+            } catch(Exception err)
+            {
+                Console.WriteLine(err.ToString());
+            }
+            finally
+            {
+                this.closeConnection();
+            }
+        }
+
+        public void delete(string sql)
+        {
+            try {
+                MySqlCommand command = new MySqlCommand(sql, conn);
+                command.ExecuteNonQuery();
+            }
+            catch(Exception err)
+            {
+                Console.WriteLine(err.ToString());
+            }
+            finally
+            {
+                this.closeConnection();
+            }
         }
     }
 }

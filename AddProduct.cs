@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -50,9 +51,14 @@ namespace WindowsFormsApp1
             newProduct.quantity = Convert.ToInt32(txtQuantity.Value);
         }
 
-        private void txtValueProduct_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            newProduct.valueProduct = Convert.ToDouble(txtValueProduct.Text);
+            newProduct.description = rxtDescription.Text;
+        }
+
+        private void txtValueProduct_TextChanged(object sender, EventArgs e)
+        {
+            newProduct.valueProduct = Convert.ToDecimal(txtValueProduct.Text);
         }
     }
 }
