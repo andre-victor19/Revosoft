@@ -262,7 +262,7 @@
             this.deletarToolStripMenuItem,
             this.atualizarToolStripMenuItem});
             this.menuOptions.Name = "menuOptions";
-            this.menuOptions.Size = new System.Drawing.Size(138, 52);
+            this.menuOptions.Size = new System.Drawing.Size(211, 80);
             // 
             // deletarToolStripMenuItem
             // 
@@ -274,8 +274,9 @@
             // atualizarToolStripMenuItem
             // 
             this.atualizarToolStripMenuItem.Name = "atualizarToolStripMenuItem";
-            this.atualizarToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+            this.atualizarToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.atualizarToolStripMenuItem.Text = "Atualizar";
+            this.atualizarToolStripMenuItem.Click += new System.EventHandler(this.atualizarToolStripMenuItem_Click);
             // 
             // ListClient
             // 

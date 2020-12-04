@@ -13,8 +13,9 @@ namespace WindowsFormsApp1
     public partial class ListClient : Form
     {
 
-        ClassClient clients = new ClassClient();
+        ClassClient clients { get; set; }
         private int itemClient { get; set; }
+        private int idxItem { get; set; }
         public ListClient()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace WindowsFormsApp1
 
         private void CreateListClient()
         {
+            clients = new ClassClient();
             listClients.Items.Clear();
             listClients.View = View.Details;
             listClients.GridLines = true;
@@ -119,7 +121,8 @@ namespace WindowsFormsApp1
                     Point loc = e.Location;
                     loc.Offset(listClients.Location);
                     menuOptions.Show(loc);
-                    itemClient = Convert.ToInt32(listClients.Items[ht.Item.Index].Text);
+                    idxItem = ht.Item.Index;
+                    itemClient = Convert.ToInt32(listClients.Items[idxItem].Text);
                 }
             }
         }
@@ -135,6 +138,17 @@ namespace WindowsFormsApp1
             {
                 clients.deleteClient(itemClient);
             }
+        }
+
+        private void atualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string itemIdClient = listClients.Items[idxItem].SubItems[0].Text;
+            string itemName = listClients.Items[idxItem].SubItems[1].Text;
+            string itemSurname = listClients.Items[idxItem].SubItems[2].Text;
+            string itemCpf = listClients.Items[idxItem].SubItems[3].Text;
+            string itemEmail = listClients.Items[idxItem].SubItems[4].Text;
+            EditClient formEditClient = new EditClient(itemIdClient, itemName, itemSurname, itemCpf, itemEmail);
+            formEditClient.Show();
         }
     }
 }

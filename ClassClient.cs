@@ -12,6 +12,8 @@ namespace WindowsFormsApp1
     class ClassClient
     {
         List<Client> clients = new List<Client>();
+        List<PhoneClient> phones = new List<PhoneClient>();
+        List<AddressClient> address = new List<AddressClient>();
         private int IdDbAccess = Convert.ToInt32(Properties.Settings.Default.IdDbAccess);
         private int IdProvider = Convert.ToInt32(Properties.Settings.Default.IdProvider);
         MessageBoxButtons buttons = MessageBoxButtons.OK;
@@ -62,6 +64,24 @@ namespace WindowsFormsApp1
             }
         }
 
+        public List<PhoneClient> getPhoneClient(int idClient)
+        {
+            phones.Clear();
+            ConnectionDB connection = new ConnectionDB();
+            connection.openConnection();
+            string command = $"SELECT * FROM telefone WHERE Cliente_idcliente = {idClient};";
+            MySqlDataReader result = connection.select(command);
+            while (result.Read())
+            {
+                PhoneClient phone = new PhoneClient(Convert.ToInt32(result[0]), result[1].ToString(), result[2].ToString(), result[3].ToString(), idClient);
+                phones.Add(phone);
+            }
+            result.Close();
+            connection.closeConnection();
+
+            return phones;
+        }
+
         public void savePhoneClient(PhoneClient phone)
         {
             try {
@@ -83,6 +103,33 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(message, caption, buttons, icon);
             }
+        }
+
+        public List<AddressClient> getAddressClients(int idClient)
+        {
+            address.Clear();
+            ConnectionDB connection = new ConnectionDB();
+            connection.openConnection();
+            string command = $"SELECT * FROM endereco WHERE Cliente_idcliente = {idClient};";
+            MySqlDataReader result = connection.select(command);
+            while (result.Read())
+            {
+                AddressClient tempAddress = new AddressClient();
+                tempAddress.idAddress = Convert.ToInt32(result[0]);
+                tempAddress.address = result[1].ToString();
+                tempAddress.number = result[2].ToString();
+                tempAddress.comp = result[3].ToString();
+                tempAddress.zipcode = result[4].ToString();
+                tempAddress.district = result[5].ToString();
+                tempAddress.city = result[6].ToString();
+                tempAddress.uf = result[7].ToString();
+                tempAddress.idProvider = Convert.ToInt32(result[10]);
+                tempAddress.idClient = idClient;
+                address.Add(tempAddress);
+            }
+            result.Close();
+            connection.closeConnection();
+            return address;
         }
 
         public void saveAddressClient(AddressClient address)
