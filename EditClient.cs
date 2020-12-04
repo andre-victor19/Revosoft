@@ -37,44 +37,18 @@ namespace WindowsFormsApp1
 
         private void CreateListPhones()
         {
-            listPhones.Items.Clear();
-            listPhones.View = View.Details;
-            listPhones.GridLines = true;
-            listPhones.FullRowSelect = true;
-            string[] columns = new string[listPhones.Columns.Count];
-
-            ListViewItem item;
-            phones.ForEach(phone => {
-                columns[0] = phone.idPhone.ToString();
-                columns[1] = phone.type;
-                columns[2] = phone.code;
-                columns[3] = phone.number;
-                item = new ListViewItem(columns);
-                listPhones.Items.Add(item);
-            });
+            DGPhones.Rows.Clear();
+            phones.ForEach(phone => 
+                DGPhones.Rows.Add(phone.idPhone.ToString(), phone.type, phone.code, phone.number)
+            );
         }
 
         private void CreateListAddress()
         {
-            listAddress.Items.Clear();
-            listAddress.View = View.Details;
-            listAddress.GridLines = true;
-            listAddress.FullRowSelect = true;
-            string[] columns = new string[listAddress.Columns.Count];
-
-            ListViewItem item;
-            addresses.ForEach(endereco => {
-                columns[0] = endereco.idAddress.ToString();
-                columns[1] = endereco.address;
-                columns[2] = endereco.district;
-                columns[3] = endereco.city;
-                columns[4] = endereco.uf;
-                columns[5] = endereco.zipcode;
-                columns[6] = endereco.number;
-                columns[7] = endereco.comp;
-                item = new ListViewItem(columns);
-                listAddress.Items.Add(item);
-            });
+            DGAddress.Rows.Clear();
+            addresses.ForEach(endereco =>
+                DGAddress.Rows.Add(endereco.idAddress.ToString(), endereco.address, endereco.district, endereco.city, endereco.uf, endereco.zipcode, endereco.number, endereco.comp)
+            );
         }
 
         private void EditClient_Load(object sender, EventArgs e)

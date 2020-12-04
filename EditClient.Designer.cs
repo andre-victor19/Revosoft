@@ -40,22 +40,24 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCPF = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.listPhones = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
-            this.idPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label6 = new System.Windows.Forms.Label();
-            this.listAddress = new System.Windows.Forms.ListView();
-            this.idAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.numero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.comp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.zipcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.district = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.city = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.uf = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DGPhones = new System.Windows.Forms.DataGridView();
+            this.idPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGAddress = new System.Windows.Forms.DataGridView();
+            this.idAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.district = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.city = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.zipcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.DGPhones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGAddress)).BeginInit();
             this.SuspendLayout();
             // 
             // txtIdClient
@@ -176,20 +178,6 @@
             this.label4.TabIndex = 26;
             this.label4.Text = "CPF";
             // 
-            // listPhones
-            // 
-            this.listPhones.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.idPhone,
-            this.type,
-            this.code,
-            this.number});
-            this.listPhones.HideSelection = false;
-            this.listPhones.Location = new System.Drawing.Point(16, 176);
-            this.listPhones.Name = "listPhones";
-            this.listPhones.Size = new System.Drawing.Size(563, 164);
-            this.listPhones.TabIndex = 30;
-            this.listPhones.UseCompatibleStateImageBehavior = false;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -200,22 +188,6 @@
             this.label5.Size = new System.Drawing.Size(99, 25);
             this.label5.TabIndex = 31;
             this.label5.Text = "Telefones";
-            // 
-            // idPhone
-            // 
-            this.idPhone.Text = "#ID";
-            // 
-            // type
-            // 
-            this.type.Text = "Tipo";
-            // 
-            // code
-            // 
-            this.code.Text = "Código";
-            // 
-            // number
-            // 
-            this.number.Text = "Número";
             // 
             // label6
             // 
@@ -228,71 +200,136 @@
             this.label6.TabIndex = 33;
             this.label6.Text = "Endereços";
             // 
-            // listAddress
+            // DGPhones
             // 
-            this.listAddress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.DGPhones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGPhones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGPhones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idPhone,
+            this.type,
+            this.code,
+            this.numero2});
+            this.DGPhones.Location = new System.Drawing.Point(18, 178);
+            this.DGPhones.MultiSelect = false;
+            this.DGPhones.Name = "DGPhones";
+            this.DGPhones.RowHeadersWidth = 51;
+            this.DGPhones.RowTemplate.Height = 24;
+            this.DGPhones.Size = new System.Drawing.Size(561, 164);
+            this.DGPhones.TabIndex = 34;
+            // 
+            // idPhone
+            // 
+            this.idPhone.HeaderText = "#ID";
+            this.idPhone.MinimumWidth = 6;
+            this.idPhone.Name = "idPhone";
+            this.idPhone.Width = 125;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Tipo";
+            this.type.MinimumWidth = 6;
+            this.type.Name = "type";
+            this.type.Width = 125;
+            // 
+            // code
+            // 
+            this.code.HeaderText = "Código";
+            this.code.MinimumWidth = 6;
+            this.code.Name = "code";
+            this.code.Width = 125;
+            // 
+            // numero2
+            // 
+            this.numero2.HeaderText = "Número";
+            this.numero2.MinimumWidth = 6;
+            this.numero2.Name = "numero2";
+            this.numero2.Width = 125;
+            // 
+            // DGAddress
+            // 
+            this.DGAddress.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGAddress.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idAddress,
-            this.address,
+            this.Address,
             this.district,
             this.city,
             this.uf,
             this.zipcode,
-            this.numero,
+            this.number,
             this.comp});
-            this.listAddress.HideSelection = false;
-            this.listAddress.Location = new System.Drawing.Point(18, 408);
-            this.listAddress.Name = "listAddress";
-            this.listAddress.Size = new System.Drawing.Size(563, 164);
-            this.listAddress.TabIndex = 32;
-            this.listAddress.UseCompatibleStateImageBehavior = false;
+            this.DGAddress.Location = new System.Drawing.Point(16, 410);
+            this.DGAddress.Name = "DGAddress";
+            this.DGAddress.RowHeadersWidth = 51;
+            this.DGAddress.RowTemplate.Height = 24;
+            this.DGAddress.Size = new System.Drawing.Size(563, 183);
+            this.DGAddress.TabIndex = 35;
             // 
             // idAddress
             // 
-            this.idAddress.Text = "#ID";
+            this.idAddress.HeaderText = "#ID";
+            this.idAddress.MinimumWidth = 6;
+            this.idAddress.Name = "idAddress";
+            this.idAddress.Width = 125;
             // 
-            // address
+            // Address
             // 
-            this.address.Text = "Rua";
-            // 
-            // numero
-            // 
-            this.numero.DisplayIndex = 2;
-            this.numero.Text = "Número";
-            // 
-            // comp
-            // 
-            this.comp.DisplayIndex = 3;
-            this.comp.Text = "Complemento";
-            // 
-            // zipcode
-            // 
-            this.zipcode.DisplayIndex = 4;
-            this.zipcode.Text = "CEP";
+            this.Address.HeaderText = "Rua";
+            this.Address.MinimumWidth = 6;
+            this.Address.Name = "Address";
+            this.Address.Width = 125;
             // 
             // district
             // 
-            this.district.DisplayIndex = 5;
-            this.district.Text = "Bairro";
+            this.district.HeaderText = "Bairro";
+            this.district.MinimumWidth = 6;
+            this.district.Name = "district";
+            this.district.Width = 125;
             // 
             // city
             // 
-            this.city.DisplayIndex = 6;
-            this.city.Text = "Cidade";
+            this.city.HeaderText = "Cidade";
+            this.city.MinimumWidth = 6;
+            this.city.Name = "city";
+            this.city.Width = 125;
             // 
             // uf
             // 
-            this.uf.DisplayIndex = 7;
-            this.uf.Text = "UF";
+            this.uf.HeaderText = "UF";
+            this.uf.MinimumWidth = 6;
+            this.uf.Name = "uf";
+            this.uf.Width = 125;
+            // 
+            // zipcode
+            // 
+            this.zipcode.HeaderText = "CEP";
+            this.zipcode.MinimumWidth = 6;
+            this.zipcode.Name = "zipcode";
+            this.zipcode.Width = 125;
+            // 
+            // number
+            // 
+            this.number.HeaderText = "Número";
+            this.number.MinimumWidth = 6;
+            this.number.Name = "number";
+            this.number.Width = 125;
+            // 
+            // comp
+            // 
+            this.comp.HeaderText = "Complemente";
+            this.comp.MinimumWidth = 6;
+            this.comp.Name = "comp";
+            this.comp.Width = 125;
             // 
             // EditClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 658);
+            this.Controls.Add(this.DGAddress);
+            this.Controls.Add(this.DGPhones);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.listAddress);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.listPhones);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtCPF);
@@ -309,6 +346,8 @@
             this.Name = "EditClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.EditClient_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DGPhones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGAddress)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,21 +367,21 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListView listPhones;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ColumnHeader idPhone;
-        private System.Windows.Forms.ColumnHeader type;
-        private System.Windows.Forms.ColumnHeader code;
-        private System.Windows.Forms.ColumnHeader number;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListView listAddress;
-        private System.Windows.Forms.ColumnHeader idAddress;
-        private System.Windows.Forms.ColumnHeader address;
-        private System.Windows.Forms.ColumnHeader numero;
-        private System.Windows.Forms.ColumnHeader comp;
-        private System.Windows.Forms.ColumnHeader zipcode;
-        private System.Windows.Forms.ColumnHeader district;
-        private System.Windows.Forms.ColumnHeader city;
-        private System.Windows.Forms.ColumnHeader uf;
+        private System.Windows.Forms.DataGridView DGPhones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numero2;
+        private System.Windows.Forms.DataGridView DGAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn district;
+        private System.Windows.Forms.DataGridViewTextBoxColumn city;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn zipcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comp;
     }
 }
