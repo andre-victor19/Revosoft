@@ -11,9 +11,9 @@ namespace WindowsFormsApp1
 {
     class ClassClient
     {
-        List<Client> clients = new List<Client>();
-        List<PhoneClient> phones = new List<PhoneClient>();
-        List<AddressClient> address = new List<AddressClient>();
+        private List<Client> clients = new List<Client>();
+        private List<PhoneClient> phones = new List<PhoneClient>();
+        private List<AddressClient> address = new List<AddressClient>();
         private int IdDbAccess = Convert.ToInt32(Properties.Settings.Default.IdDbAccess);
         private int IdProvider = Convert.ToInt32(Properties.Settings.Default.IdProvider);
         MessageBoxButtons buttons = MessageBoxButtons.OK;
@@ -48,7 +48,6 @@ namespace WindowsFormsApp1
                 connection.insert(command);
                 message = "Cliente inserido com sucesso !!";
                 caption = "Sucesso";
-                icon = MessageBoxIcon.Information;
                 
             }
             catch(Exception err)
@@ -62,6 +61,49 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(message, caption, buttons, icon);
             }
+        }
+
+        public void editClient(Client client)
+        {
+            try {
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string command = $"UPDATE cliente SET nome = '{client.name}', sobrenome = '{client.surname}', cpf = '{client.cpf}', email = '{client.email}', modificado = NOW(), BancoAcesso_idBancoAcesso = {IdDbAccess} WHERE idcliente = {client.idClient}";
+                connection.update(command);
+                message = "Cliente atualizado com sucesso !!";
+                caption = "Sucesso";
+            }
+            catch(Exception error) {
+                Console.WriteLine(error.ToString());
+                message = "Falha ao atualizar cliente.";
+                caption = "Falha";
+                icon = MessageBoxIcon.Error;
+            }
+            finally
+            {
+                MessageBox.Show(message, caption, buttons, icon);
+            }
+        }
+
+        public void deleteClient(int idClient)
+        {
+            try
+            {
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string command = $"DELETE FROM cliente WHERE idcliente = {idClient};";
+                connection.delete(command);
+                message = "Cliente excluído com sucesso !!";
+                caption = "Sucesso";
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.ToString());
+                message = "Falha ao excluir cliente";
+                caption = "Falha";
+                icon = MessageBoxIcon.Error;
+            }
+            finally { MessageBox.Show(message, caption, buttons, icon); }
         }
 
         public List<PhoneClient> getPhoneClient(int idClient)
@@ -101,6 +143,41 @@ namespace WindowsFormsApp1
             }
             finally
             {
+                MessageBox.Show(message, caption, buttons, icon);
+            }
+        }
+
+        public void editPhoneClient(int idPhone, string column, string data)
+        {
+            try {
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string command = $"UPDATE telefone SET {column} = '{data}' WHERE idtelefone = {idPhone}";
+                connection.update(command);
+            }
+            catch(Exception error)
+            {
+                Console.WriteLine(error.ToString());
+            }
+        }
+
+        public void deletePhoneClient(int idPhone)
+        {
+            try {
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string command = $"DELETE FROM telefone WHERE idtelefone = {idPhone};";
+                connection.delete(command);
+                message = "Contato excluído com sucesso !!";
+                caption = "Sucesso";
+            }
+            catch(Exception error) {
+                Console.WriteLine(error.ToString());
+                message = "Falha ao deletar contato.";
+                caption = "Falha";
+                icon = MessageBoxIcon.Error;
+            }
+            finally {
                 MessageBox.Show(message, caption, buttons, icon);
             }
         }
@@ -155,23 +232,44 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void deleteClient(int idClient)
+        public void editAddressClient(int idAddress, string column, string data)
         {
-            try {
+            try
+            {
                 ConnectionDB connection = new ConnectionDB();
                 connection.openConnection();
-                string command = $"DELETE FROM cliente WHERE idcliente = {idClient};";
+                string newColumn = column == "NumeroEnd" ? "numero" : column;
+                string command = $"UPDATE endereco SET {column} = '{data}' WHERE idEndereco = {idAddress}";
+                connection.update(command);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.ToString());
+            }
+        }
+
+        public void deleteAddressClient(int idAddress)
+        {
+            try
+            {
+                ConnectionDB connection = new ConnectionDB();
+                connection.openConnection();
+                string command = $"DELETE FROM endereco WHERE idEndereco = {idAddress};";
                 connection.delete(command);
-                message = "Cliente excluído com sucesso !!";
+                message = "Endereço excluído com sucesso !!";
                 caption = "Sucesso";
             }
-            catch(Exception error) {
+            catch (Exception error)
+            {
                 Console.WriteLine(error.ToString());
-                message = "Falha ao excluir cliente";
+                message = "Falha ao deletar endereço.";
                 caption = "Falha";
                 icon = MessageBoxIcon.Error;
             }
-            finally { MessageBox.Show(message, caption, buttons, icon); }
+            finally
+            {
+                MessageBox.Show(message, caption, buttons, icon);
+            }
         }
     }
 }

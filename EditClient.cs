@@ -16,6 +16,10 @@ namespace WindowsFormsApp1
         ClassClient classClient { get; set; }
         List<PhoneClient> phones { get; set; }
         List<AddressClient> addresses { get; set; }
+        MessageBoxButtons buttons { get; set; }
+        MessageBoxIcon icon { get; set; }
+        string message { get; set; }
+        string caption { get; set; }
         public EditClient()
         {
             InitializeComponent();
@@ -71,6 +75,79 @@ namespace WindowsFormsApp1
         private void btnSave_Click(object sender, EventArgs e)
         {
             this.Close();
+            classClient.editClient(client);
+        }
+
+        private void DGPhones_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            string column = DGPhones.Columns[e.ColumnIndex].Name;
+            string row = DGPhones.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            int idPhone = Convert.ToInt32(DGPhones.Rows[e.RowIndex].Cells[0].Value.ToString());
+            classClient.editPhoneClient(idPhone, column, row);
+        }
+
+        private void DGAddress_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            string column = DGAddress.Columns[e.ColumnIndex].Name;
+            string row = DGAddress.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            int idAddress = Convert.ToInt32(DGAddress.Rows[e.RowIndex].Cells[0].Value.ToString());
+            classClient.editAddressClient(idAddress, column, row);
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            client.name = txtName.Text;
+        }
+
+        private void txtLastName_TextChanged(object sender, EventArgs e)
+        {
+            client.surname = txtLastName.Text;
+        }
+
+        private void txtCPF_TextChanged(object sender, EventArgs e)
+        {
+            client.cpf = txtCPF.Text;
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            client.email = txtEmail.Text;
+        }
+
+        private void DGPhones_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            buttons = MessageBoxButtons.YesNo;
+            icon = MessageBoxIcon.Question;
+            message = "Deseja excluir esse contato ?";
+            caption = "Excluir";
+            DialogResult result = MessageBox.Show(message, caption, buttons, icon);
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                int idPhone = Convert.ToInt32(e.Row.Cells[0].Value);
+                classClient.deletePhoneClient(idPhone);
+            }
+        }
+
+        private void DGAddress_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            buttons = MessageBoxButtons.YesNo;
+            icon = MessageBoxIcon.Question;
+            message = "Deseja excluir esse endereço ?";
+            caption = "Excluir";
+            DialogResult result = MessageBox.Show(message, caption, buttons, icon);
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                int idAddress = Convert.ToInt32(e.Row.Cells[0].Value);
+                classClient.deleteAddressClient(idAddress);
+            }
         }
     }
 }
